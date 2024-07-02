@@ -1,0 +1,41 @@
+﻿@model projeBlog.ViewModels.PageVM  
+
+@{
+    ViewData["Title"] = "Hakkımda";  
+
+    string pageThumbnail = "";  
+
+    if (Model.ThumbnailUrl == null)  
+    {
+        pageThumbnail = "/blog/assets/img/about-bg.jpg";  
+    }
+    else  
+    {
+        pageThumbnail = "/thumbnails/" + Model.ThumbnailUrl;  
+    }
+}
+
+<!-- Sayfa Başlığı-->
+<header class="masthead" style="background-image: url('@pageThumbnail')">
+    <!-- Küçük resim URL'si background-image olarak ayarlanmış bir başlık (header) bölümü -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>@Model.Title</h1> <!-- Sayfa başlığı -->
+                    <span class="subheading">@Model.ShortDescription</span> <!-- Sayfa kısa açıklaması -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @Html.Raw(Model.Description) <!-- Sayfa açıklaması -->
+            </div>
+        </div>
+    </div>
+</main>

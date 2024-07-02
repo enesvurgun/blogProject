@@ -1,0 +1,79 @@
+﻿@model projeBlog.ViewModels.ContactVM  
+
+@{
+    Layout = "_Layout";  
+    ViewData["Title"] = "Contact";  
+
+    string pageThumbnail = "";  
+
+    if (Model.PageVM.ThumbnailUrl == null)  
+    {
+        pageThumbnail = "/blog/assets/img/contact-bg.jpg";  
+    }
+    else  
+    {
+        pageThumbnail = "/thumbnails/" + Model.PageVM.ThumbnailUrl; 
+    }
+}
+
+<!-- Sayfa Başlığı-->
+<header class="masthead" style="background-image: url('@pageThumbnail')">
+    <!-- Küçük resim URL'si background-image olarak ayarlanmış bir başlık (header) bölümü -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>@Model.PageVM.Title</h1> <!-- Sayfa başlığını gösterir -->
+                    <span class="subheading">@Model.PageVM.ShortDescription</span> <!-- Sayfa kısa açıklamasını gösterir -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @* @Html.Raw(Model.Description) *@
+                <!-- İletişim formunu içeren bir bölüm -->
+                <div class="container-fluid">
+                    <div class="card" style="border-radius: 10px ">
+                        <div class="card-body">
+                            <form asp-action="Contact" asp-controller="Page">
+                                <!-- Ad alanı -->
+                                <div class="mb-2">
+                                    <label>Ad</label>
+                                    <input type="text" style="border-radius: 10px " asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span> <!-- Ad alanı için doğrulama mesajı -->
+                                </div>
+                                <!-- Email alanı -->
+                                <div class="mb-2">
+                                    <label>Email</label>
+                                    <input type="text" style="border-radius: 10px " asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span> <!-- Email alanı için doğrulama mesajı -->
+                                </div>
+                                <!-- Konu alanı -->
+                                <div class="mb-2">
+                                    <label>Konu</label>
+                                    <input type="text" style="border-radius: 10px " asp-for="Subject" class="form-control" />
+                                    <span asp-validation-for="Subject" class="text-danger"></span> <!-- Konu alanı için doğrulama mesajı -->
+                                </div>
+                                <!-- Mesaj alanı -->
+                                <div class="mb-2">
+                                    <label>Mesaj</label>
+                                    <input type="text" style="border-radius: 10px " asp-for="Message" class="form-control" />
+                                    <span asp-validation-for="Message" class="text-danger"></span> <!-- Mesaj alanı için doğrulama mesajı -->
+                                </div>
+                                <!-- Gönder butonu -->
+                                <div class="mb-2">
+                                    <button type="submit" style="border-radius: 10px " class="btn btn-primary w-100">Gönder</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

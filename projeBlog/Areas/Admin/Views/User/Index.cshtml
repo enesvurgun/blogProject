@@ -1,0 +1,71 @@
+﻿@model List<projeBlog.ViewModels.UserVM>
+<!-- Bu görünümde kullanılacak ViewModel'in tipi List<UserVM> olarak belirtilir. -->
+@{
+    ViewData["Title"] = "Index";
+    <!-- Sayfanın başlık bilgisini "Index" olarak ayarlar. -->
+}
+
+<div class="container-fluid">
+    <!-- Tüm içeriği kapsayan bir konteyner oluşturur. -->
+
+    <div class="card">
+        <!-- İçeriği kart formatında göstermek için bir kart oluşturur. -->
+
+        <div class="card-header bg-primary">
+            <!-- Kartın başlık bölümünü oluşturur ve arka plan rengini mavi yapar. -->
+            <h4 class="card-title text-white">Kullanıcı Bilgileri</h4>
+            <!-- Kart başlığını beyaz renkte ve büyük olarak gösterir. -->
+        </div>
+
+        <div class="card-body">
+            <!-- Kartın içeriğini (gövdesini) oluşturur. -->
+
+            <table class="table table-striped table-hover" id="myTable">
+                <!-- Şeritli ve üzerine gelindiğinde renklenecek bir tablo oluşturur. Tabloya "myTable" kimliği atanır. -->
+
+                <thead>
+                    <!-- Tablo başlıklarını içeren bölüm. -->
+                    <tr>
+                        <th>Ad</th>
+                        <!-- Ad sütun başlığı. -->
+                        <th>Soyad</th>
+                        <!-- Soyad sütun başlığı. -->
+                        <th>Kullanıcı Adı</th>
+                        <!-- Kullanıcı Adı sütun başlığı. -->
+                        <th>Email</th>
+                        <!-- Email sütun başlığı. -->
+                        <th>Rol</th>
+                        <!-- Rol sütun başlığı. -->
+                        <th>İşlem</th>
+                        <!-- İşlem sütun başlığı. -->
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Tablo verilerini içeren bölüm. -->
+                    @foreach (var user in Model)
+                    {
+                        <!-- Model'deki her bir kullanıcı için bir satır oluşturur. -->
+                        <tr>
+                            <td>@user.FirstName</td>
+                            <!-- Kullanıcının adı. -->
+                            <td>@user.LastName</td>
+                            <!-- Kullanıcının soyadı. -->
+                            <td>@user.UserName</td>
+                            <!-- Kullanıcının kullanıcı adı. -->
+                            <td>@user.Email</td>
+                            <!-- Kullanıcının email adresi. -->
+                            <td>@user.Role</td>
+                            <!-- Kullanıcının rolü. -->
+                            <td>
+                                <!-- Kullanıcı işlemleri için bir sütun. -->
+                                <a class="btn btn-info" asp-action="ResetPassword" asp-controller="User" asp-route-id="@user.Id">Şifre Güncelle</a>
+                                <!-- Şifre Güncelle butonu. Bu buton, "ResetPassword" aksiyonuna ve "User" kontrolcüsüne yönlendirilir, kullanıcının Id'si ile birlikte. -->
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

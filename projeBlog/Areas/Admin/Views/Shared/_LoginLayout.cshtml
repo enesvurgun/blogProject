@@ -1,0 +1,35 @@
+﻿<html lang="en">
+
+<head>
+    <meta charset="utf-8"> <!-- Sayfanın karakter setini UTF-8 olarak ayarlar -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Internet Explorer için uyumluluk modunu ayarlar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- Sayfanın mobil uyumlu olmasını sağlar -->
+    <meta name="description" content=""> <!-- Sayfa açıklaması -->
+    <meta name="author" content=""> <!-- Sayfa yazarı -->
+
+    <title>@ViewData["Title"] - projeBlog</title> <!-- Dinamik olarak ayarlanan sayfa başlığı -->
+
+    <link href="~/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> <!-- FontAwesome stil dosyası -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> <!-- Google Fonts stil dosyası -->
+
+    <link href="~/dashboard/css/sb-admin-2.min.css" rel="stylesheet"> <!-- SB Admin 2 stil dosyası -->
+
+</head>
+
+<body class="bg-gradient-primary">
+    <!-- Sayfa arka planını degrade bir renk olarak ayarlar -->
+
+    <div class="container">
+        @RenderBody() <!-- Sayfanın ana içeriğini render eder -->
+    </div>
+
+    <script src="~/dashboard/vendor/jquery/jquery.min.js"></script> <!-- jQuery kütüphanesi -->
+    <script src="~/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap kütüphanesi -->
+    <script src="~/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script> <!-- jQuery easing eklentisi -->
+    <script src="~/dashboard/js/sb-admin-2.min.js"></script> <!-- SB Admin 2 script dosyası -->
+    @await Component.InvokeAsync("Notyf") <!-- Bildirim bileşeni (Notyf) -->
+    @await RenderSectionAsync("Scripts", required: false) <!-- Sayfaya özel ek scriptler için alan -->
+
+</body>
+
+</html>
